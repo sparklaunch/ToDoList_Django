@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>To Do List with Django</h1>
-    <form action="./new" method="POST">
+    <form action="{% url 'to_do_list:create' %}" method="POST">
         {% csrf_token %}
         <label for="content">Content: </label>
         <input type="text" name="content" id="content" placeholder="Enter a new To-Do...">
