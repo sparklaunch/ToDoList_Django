@@ -8,11 +8,26 @@
 </head>
 <body>
     <h1>To Do List with Django</h1>
-    <form action="./create" method="POST">
+    <form action="./new" method="POST">
         {% csrf_token %}
         <label for="content">Content: </label>
         <input type="text" name="content" id="content" placeholder="Enter a new To-Do...">
         <button type="submit">Submit!</button>
     </form>
+    {% if items %}
+    <ul>
+        {% for item in items %}
+        <li>
+            {% if item.is_done %}
+            <del>{{ item.content }}</del>
+            {% else %}
+            <p>{{ item.content }}<a href="{% url 'to_do_list:check' item.id %}">Check</a></p>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No items yet.</p>
+    {% endif %}
 </body>
 </html>

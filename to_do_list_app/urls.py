@@ -1,9 +1,9 @@
 from django.urls import path
 from . import views
 
-app_name = "To-Do-List App"
+app_name = "to_do_list"
 urlpatterns = [
-    path("", views.index, name = "Index"),
-    path("new/", views.create, name = "Create"),
-    path("check/", views.check, name = "Check")
+    path("", views.index, name = "index"),
+    path("new", views.create, name = "create"),
+    path("check/<int:item_index>", views.check, name = "check")
 ]
