@@ -12,8 +12,9 @@ def index(request):
 
 def create(request):
     user_input = request.POST["content"]
-    new_item = Item(content = user_input)
-    new_item.save()
+    if not (user_input == ""):
+        new_item = Item(content = user_input)
+        new_item.save()
     return HttpResponseRedirect(reverse("to_do_list:index"))
 
 def check(request, item_index):
